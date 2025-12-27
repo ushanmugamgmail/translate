@@ -40,16 +40,17 @@ const Translator = () => {
     useEffect(() => {
         const timer = setTimeout(() => {
             if (inputText.trim()) {
-                // Auto-intelligence: detect if input should be Tamil or English
+                let s = sourceLang;
+                let t = targetLang;
                 const hasTamil = /[^\u0000-\u007F]+/.test(inputText);
                 if (hasTamil && sourceLang === 'English') {
-                    setSourceLang('Tamil');
-                    setTargetLang('English');
+                    s = 'Tamil'; t = 'English';
+                    setSourceLang('Tamil'); setTargetLang('English');
                 } else if (!hasTamil && sourceLang === 'Tamil' && inputText.length > 3) {
-                    setSourceLang('English');
-                    setTargetLang('Tamil');
+                    s = 'English'; t = 'Tamil';
+                    setSourceLang('English'); setTargetLang('Tamil');
                 }
-                handleTranslate();
+                handleTranslate(s, t);
             } else {
                 setTranslatedText('');
             }
@@ -78,7 +79,7 @@ const Translator = () => {
         setTranslatedText(inputText);
     };
 
-    const handleTranslate = async () => {
+    const handleTranslate = async (s = sourceLang, t = targetLang) => {
         if (!inputText.trim()) {
             setTranslatedText('');
             return;
@@ -86,21 +87,21 @@ const Translator = () => {
 
         setIsTranslating(true);
         try {
-            const pair = sourceLang === 'English' ? 'en|ta' : 'ta|en';
+            const pair = s === 'English' ? 'en|ta' : 'ta|en';
+            // Using a more robust translation approach if possible, but MyMemory is the best free one
             const res = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(inputText)}&langpair=${pair}`);
             const data = await res.json();
 
             if (data.responseData && data.responseData.translatedText) {
                 setTranslatedText(data.responseData.translatedText);
             } else {
-                setTranslatedText('Translation limit reached or error occurred.');
+                setTranslatedText('Translation busy. Try again.');
             }
         } catch (error) {
             console.error('Translation error:', error);
-            setTranslatedText('Error: Could not connect to translation service.');
+            setTranslatedText('Connection error. Check your internet.');
         } finally {
-            setIsTranslating(true); // Keep spinner for a tiny bit longer for UX
-            setTimeout(() => setIsTranslating(false), 300);
+            setIsTranslating(false);
         }
     };
 
@@ -258,6 +259,7 @@ const Translator = () => {
                         onFocus={() => predictions.length > 0 && setShowPredictions(true)}
                         placeholder="Enter text..."
                         spellCheck={false}
+                        style={{ color: isDark ? '#ffffff' : '#1e293b' }}
                     />
                     {showPredictions && (
                         <div style={{
@@ -298,7 +300,7 @@ const Translator = () => {
                                 <span className="material-symbols-outlined">volume_up</span>
                             </button>
                             <button
-                                onClick={handleTranslate}
+                                onClick={() => handleTranslate()}
                                 style={{
                                     background: 'var(--primary)',
                                     color: 'white',

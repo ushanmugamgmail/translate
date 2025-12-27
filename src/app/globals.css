@@ -32,9 +32,10 @@ body {
   align-items: center;
 }
 
-[data-theme='dark'] {
+[data-theme='dark'],
+[data-theme='dark'] body {
   background-color: var(--background-dark);
-  color: white;
+  color: #ffffff !important;
 }
 
 .app-container {
@@ -169,6 +170,9 @@ body {
   outline: none;
 }
 
+[data-theme='dark'] .card textarea {
+  color: #ffffff;
+}
 [data-theme='dark'] .card textarea::placeholder {
   color: rgba(255, 255, 255, 0.2);
 }
