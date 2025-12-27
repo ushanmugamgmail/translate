@@ -10,8 +10,6 @@ const Translator = () => {
     const [targetLang, setTargetLang] = useState('Tamil');
     const [isTranslating, setIsTranslating] = useState(false);
     const [isDark, setIsDark] = useState(true);
-    const [predictions, setPredictions] = useState<string[]>([]);
-    const [showPredictions, setShowPredictions] = useState(false);
     const [isListening, setIsListening] = useState(false);
 
     const startListening = () => {
@@ -57,18 +55,6 @@ const Translator = () => {
         return () => clearTimeout(timer);
     }, [inputText]);
 
-    useEffect(() => {
-        if (inputText.length > 2) {
-            const mock = sourceLang === 'English' 
-                ? ['Hello, how are you?', 'Good morning', 'Thank you so much', 'Where is the station?']
-                : ['வணக்கம், எப்படி இருக்கிறீர்கள்?', 'காலை வணக்கம்', 'மிக்க நன்றி', 'நிலையம் எங்கே உள்ளது?'];
-            const filtered = mock.filter(i => i.toLowerCase().includes(inputText.toLowerCase()));
-            setPredictions(filtered);
-            setShowPredictions(filtered.length > 0);
-        } else {
-            setShowPredictions(false);
-        }
-    }, [inputText, sourceLang]);
 
     const swapLanguages = () => {
         const temp = sourceLang;
@@ -194,44 +180,10 @@ const Translator = () => {
                     <textarea 
                         value={inputText}
                         onChange={(e) => setInputText(e.target.value)}
-                        onFocus={() => predictions.length > 0 && setShowPredictions(true)}
                         placeholder="Enter text..."
                         spellCheck={false}
                         style={{ color: isDark ? '#ffffff' : '#1e293b' }}
                     />
-                    {showPredictions && (
-                        <div style={{
-                            position: 'absolute',
-                            top: '100%',
-                            left: '1rem',
-                            right: '1rem',
-                            background: isDark ? '#2c2c35' : 'white',
-                            borderRadius: '12px',
-                            boxShadow: '0 10px 25px rgba(0,0,0,0.2)',
-                            zIndex: 50,
-                            marginTop: '-10px',
-                            border: '1px solid var(--primary-glow)'
-                        }}>
-                            {predictions.map((p, i) => (
-                                <div 
-                                    key={i} 
-                                    onClick={() => {
-                                        setInputText(p);
-                                        setShowPredictions(false);
-                                        handleTranslate();
-                                    }}
-                                    style={{ 
-                                        padding: '0.75rem 1rem', 
-                                        borderBottom: i === predictions.length - 1 ? 'none' : '1px solid rgba(0,0,0,0.05)',
-                                        cursor: 'pointer',
-                                        fontSize: '0.9rem'
-                                    }}
-                                >
-                                    {p}
-                                </div>
-                            ))}
-                        </div>
-                    )}
                     <div className="card-footer">
                         <div style={{ display: 'flex', gap: '0.5rem' }}>
                             <button className="btn-icon">
