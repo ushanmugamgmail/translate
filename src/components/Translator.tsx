@@ -12,7 +12,6 @@ const Translator = () => {
     const [isDark, setIsDark] = useState(true);
     const [predictions, setPredictions] = useState<string[]>([]);
     const [showPredictions, setShowPredictions] = useState(false);
-    const [isSettingsOpen, setIsSettingsOpen] = useState(false);
     const [isListening, setIsListening] = useState(false);
 
     const startListening = () => {
@@ -175,61 +174,12 @@ const Translator = () => {
             <header className="header">
                 <h2 style={{ fontSize: '1.5rem', fontWeight: 800 }}>Translate</h2>
                 <div style={{ display: 'flex', gap: '0.75rem' }}>
-                    <button className="btn-icon" onClick={() => setIsSettingsOpen(!isSettingsOpen)}>
-                        <span className="material-symbols-outlined">settings</span>
-                    </button>
                     <button className="btn-icon" onClick={() => setIsDark(!isDark)}>
                         <span className="material-symbols-outlined">{isDark ? 'light_mode' : 'dark_mode'}</span>
                     </button>
                 </div>
             </header>
 
-            {isSettingsOpen && (
-                <div style={{
-                    position: 'absolute',
-                    top: '5rem',
-                    right: '1.25rem',
-                    left: '1.25rem',
-                    background: isDark ? '#2c2c35' : 'white',
-                    borderRadius: '1rem',
-                    padding: '1.5rem',
-                    boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1)',
-                    zIndex: 100,
-                    border: '1px solid rgba(0,0,0,0.1)'
-                }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1.5rem' }}>
-                        <h3 style={{ fontWeight: 700 }}>Options</h3>
-                        <span className="material-symbols-outlined" onClick={() => setIsSettingsOpen(false)} style={{ cursor: 'pointer' }}>close</span>
-                    </div>
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                            <span>🌙 Dark Mode</span>
-                            <div 
-                                onClick={() => setIsDark(!isDark)}
-                                style={{ 
-                                    width: '40px', 
-                                    height: '20px', 
-                                    background: isDark ? 'var(--primary)' : '#ccc', 
-                                    borderRadius: '10px',
-                                    position: 'relative',
-                                    cursor: 'pointer'
-                                }}
-                            >
-                                <div style={{ 
-                                    width: '16px', 
-                                    height: '16px', 
-                                    background: 'white', 
-                                    borderRadius: '50%', 
-                                    position: 'absolute', 
-                                    top: '2px', 
-                                    left: isDark ? '22px' : '2px',
-                                    transition: 'left 0.2s'
-                                }} />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            )}
 
             <div className="lang-selector">
                 <div className="lang-bar">
