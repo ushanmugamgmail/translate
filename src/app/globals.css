@@ -2,13 +2,15 @@
   --primary: #135bec;
   --primary-glow: rgba(19, 91, 236, 0.3);
   --background-light: #f6f6f8;
-  --background-dark: #101622;
+  --background-dark: #0a0e17;
   --card-light: #ffffff;
-  --card-dark: #1e1e24;
+  --card-dark: #161b26;
   --slate-400: #94a3b8;
   --slate-500: #64748b;
   --slate-600: #475569;
   --slate-800: #1e293b;
+  --slate-200: #e2e8f0;
+    --slate-100: #f1f5f9;
   --radius-xl: 1rem;
   --radius-2xl: 1.5rem;
   --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
@@ -167,6 +169,9 @@ body {
   outline: none;
 }
 
+[data-theme='dark'] .card textarea::placeholder {
+  color: rgba(255, 255, 255, 0.2);
+}
 .card-footer {
   display: flex;
   justify-content: space-between;
@@ -287,6 +292,9 @@ body {
   color: var(--slate-500);
 }
 
+[data-theme='dark'] .nav-label {
+  color: var(--slate-400);
+}
 .welcome-screen {
   position: absolute;
   inset: 0;
