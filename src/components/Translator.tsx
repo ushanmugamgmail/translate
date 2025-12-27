@@ -151,15 +151,7 @@ const Translator = () => {
                         Start Translating
                         <span className="material-symbols-outlined">arrow_forward</span>
                     </button>
-                    
-                    <div style={{ marginTop: '2rem', display: 'flex', gap: '1rem' }}>
-                         <button 
-                            onClick={() => setIsDark(!isDark)}
-                            style={{ background: 'transparent', border: 'none', color: 'var(--slate-400)', cursor: 'pointer' }}
-                         >
-                            <span className="material-symbols-outlined">{isDark ? 'light_mode' : 'dark_mode'}</span>
-                         </button>
-                    </div>
+
                 </div>
             </div>
         );
@@ -173,9 +165,6 @@ const Translator = () => {
                     <h2 style={{ fontSize: '1.25rem', fontWeight: 800 }}>LinguaFlow</h2>
                 </div>
                 <div style={{ display: 'flex', gap: '0.75rem' }}>
-                    <button className="btn-icon" onClick={() => setIsDark(!isDark)}>
-                        <span className="material-symbols-outlined">{isDark ? 'light_mode' : 'dark_mode'}</span>
-                    </button>
                 </div>
             </header>
 
