@@ -13,17 +13,49 @@ const Translator = () => {
     const [predictions, setPredictions] = useState<string[]>([]);
     const [showPredictions, setShowPredictions] = useState(false);
     const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+    const [isListening, setIsListening] = useState(false);
+
+    const startListening = () => {
+        if (!('webkitSpeechRecognition' in window)) {
+            alert('Speech recognition not supported in this browser.');
+            return;
+        }
+
+        // @ts-ignore
+        const recognition = new window.webkitSpeechRecognition();
+        recognition.continuous = false;
+        recognition.interimResults = true;
+        recognition.lang = sourceLang === 'English' ? 'en-US' : 'ta-IN';
+
+        recognition.onstart = () => setIsListening(true);
+        recognition.onend = () => setIsListening(false);
+        recognition.onresult = (event: any) => {
+            const transcript = event.results[0][0].transcript;
+            setInputText(transcript);
+        };
+
+        recognition.start();
+    };
 
     useEffect(() => {
         const timer = setTimeout(() => {
             if (inputText.trim()) {
+                // Auto-intelligence: detect if input should be Tamil or English
+                const hasTamil = /[^\u0000-\u007F]+/.test(inputText);
+                if (hasTamil && sourceLang === 'English') {
+                    setSourceLang('Tamil');
+                    setTargetLang('English');
+                } else if (!hasTamil && sourceLang === 'Tamil' && inputText.length > 3) {
+                    setSourceLang('English');
+                    setTargetLang('Tamil');
+                }
                 handleTranslate();
             } else {
                 setTranslatedText('');
             }
         }, 800);
         return () => clearTimeout(timer);
-    }, [inputText, sourceLang]);
+    }, [inputText]);
 
     useEffect(() => {
         if (inputText.length > 2) {
@@ -46,36 +78,30 @@ const Translator = () => {
         setTranslatedText(inputText);
     };
 
-    const handleTranslate = () => {
+    const handleTranslate = async () => {
         if (!inputText.trim()) {
             setTranslatedText('');
             return;
         }
+
         setIsTranslating(true);
-        // Simple mock translation
-        setTimeout(() => {
-            let result = '';
-            if (sourceLang === 'English') {
-                const text = inputText.toLowerCase();
-                if (text.includes('hello') || text.includes('hi') || text.includes('hey')) {
-                    result = 'வணக்கம்';
-                } else if (text.includes('how are you')) {
-                    result = 'தாங்கள் எப்படி இருக்கிறீர்கள்?';
-                } else if (text.includes('thanks') || text.includes('thank you')) {
-                    result = 'மிக்க நன்றி';
-                } else if (text.includes('bye') || text.includes('goodbye')) {
-                    result = 'போய் வருகிறேன்';
-                } else {
-                    result = 'மொழிபெயர்ப்பு (Demo)';
-                }
+        try {
+            const pair = sourceLang === 'English' ? 'en|ta' : 'ta|en';
+            const res = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(inputText)}&langpair=${pair}`);
+            const data = await res.json();
+
+            if (data.responseData && data.responseData.translatedText) {
+                setTranslatedText(data.responseData.translatedText);
             } else {
-                if (inputText.includes('வணக்கம்')) result = 'Hello';
-                else if (inputText.includes('நன்றி')) result = 'Thank you very much';
-                else result = 'Translated (Demo)';
+                setTranslatedText('Translation limit reached or error occurred.');
             }
-            setTranslatedText(result);
-            setIsTranslating(false);
-        }, 600);
+        } catch (error) {
+            console.error('Translation error:', error);
+            setTranslatedText('Error: Could not connect to translation service.');
+        } finally {
+            setIsTranslating(true); // Keep spinner for a tiny bit longer for UX
+            setTimeout(() => setIsTranslating(false), 300);
+        }
     };
 
     useEffect(() => {
@@ -306,13 +332,27 @@ const Translator = () => {
                 )}
 
                 <div className="card output-card">
-                    <span className="card-label" style={{ color: 'var(--primary)' }}>{targetLang}</span>
+                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                        <span className="card-label" style={{ color: 'var(--primary)' }}>{targetLang}</span>
+                        {isTranslating && (
+                            <div className="spinner" style={{ width: '16px', height: '16px', border: '2px solid var(--primary)', borderTopColor: 'transparent', borderRadius: '50%', animation: 'spin 0.6s linear infinite' }} />
+                        )}
+                    </div>
                     <div className="output-text">
                         {translatedText || <span style={{ opacity: 0.3 }}>{sourceLang === 'English' ? 'மொழிபெயர்ப்பு...' : 'Translation...'}</span>}
                     </div>
                     <div className="card-footer" style={{ borderTop: '1px solid rgba(19, 91, 236, 0.1)', paddingTop: '0.75rem' }}>
                         <div style={{ display: 'flex', gap: '0.25rem' }}>
-                            <button className="btn-icon" style={{ color: 'var(--primary)' }}>
+                            <button
+                                className="btn-icon"
+                                style={{ color: 'var(--primary)' }}
+                                onClick={() => {
+                                    const synth = window.speechSynthesis;
+                                    const utterance = new SpeechSynthesisUtterance(translatedText);
+                                    utterance.lang = targetLang === 'Tamil' ? 'ta-IN' : 'en-US';
+                                    synth.speak(utterance);
+                                }}
+                            >
                                 <span className="material-symbols-outlined">volume_up</span>
                             </button>
                             <button className="btn-icon" style={{ color: 'var(--primary)' }} onClick={() => navigator.clipboard.writeText(translatedText)}>
@@ -336,11 +376,11 @@ const Translator = () => {
                     </div>
                     <span className="nav-label">Camera</span>
                 </div>
-                <div className="nav-item">
-                    <div className="mic-btn">
-                        <span className="material-symbols-outlined" style={{ fontSize: '32px' }}>mic</span>
+                <div className="nav-item" onClick={startListening}>
+                    <div className={`mic-btn ${isListening ? 'listening' : ''}`} style={{ background: isListening ? '#ef4444' : 'var(--primary)' }}>
+                        <span className="material-symbols-outlined" style={{ fontSize: '32px' }}>{isListening ? 'graphic_eq' : 'mic'}</span>
                     </div>
-                    <span className="nav-label" style={{ fontWeight: 'bold' }}>Speak</span>
+                    <span className="nav-label" style={{ fontWeight: 'bold' }}>{isListening ? 'Listening...' : 'Speak'}</span>
                 </div>
                 <div className="nav-item">
                     <div className="nav-icon">
