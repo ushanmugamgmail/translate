@@ -16,6 +16,17 @@ const Translator = () => {
     const [workMode, setWorkMode] = useState(false);
 
     useEffect(() => {
+        const timer = setTimeout(() => {
+            if (inputText.trim()) {
+                handleTranslate();
+            } else {
+                setTranslatedText('');
+            }
+        }, 800);
+        return () => clearTimeout(timer);
+    }, [inputText, sourceLang, workMode]);
+
+    useEffect(() => {
         if (inputText.length > 2) {
             const mock = sourceLang === 'English' 
                 ? ['Hello, how are you?', 'Good morning', 'Thank you so much', 'Where is the station?']
@@ -250,9 +261,26 @@ const Translator = () => {
                         </div>
                     )}
                     <div className="card-footer">
-                        <button className="btn-icon">
-                            <span className="material-symbols-outlined">volume_up</span>
-                        </button>
+                        <div style={{ display: 'flex', gap: '0.5rem' }}>
+                            <button className="btn-icon">
+                                <span className="material-symbols-outlined">volume_up</span>
+                            </button>
+                            <button
+                                onClick={handleTranslate}
+                                style={{
+                                    background: 'var(--primary)',
+                                    color: 'white',
+                                    border: 'none',
+                                    borderRadius: '8px',
+                                    padding: '0 1rem',
+                                    fontSize: '0.8rem',
+                                    fontWeight: 'bold',
+                                    cursor: 'pointer'
+                                }}
+                            >
+                                Translate
+                            </button>
+                        </div>
                         <span style={{ fontSize: '0.7rem', color: 'var(--slate-400)' }}>{inputText.length}/5000</span>
                     </div>
                 </div>
