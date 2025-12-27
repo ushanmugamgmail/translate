@@ -113,18 +113,14 @@ const Translator = () => {
             <div className="welcome-screen">
                 <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '2rem', textAlign: 'center' }}>
                     <div style={{ 
-                        width: '80px', 
-                        height: '80px', 
-                        background: 'var(--primary)', 
-                        borderRadius: '20px', 
-                        display: 'flex', 
-                        alignItems: 'center', 
-                        justifyContent: 'center',
-                        color: 'white',
+                        width: '120px',
+                        height: '120px',
+                        borderRadius: '24px',
+                        overflow: 'hidden',
                         marginBottom: '2rem',
                         boxShadow: '0 20px 40px -10px var(--primary-glow)'
                     }}>
-                        <span className="material-symbols-outlined" style={{ fontSize: '48px' }}>translate</span>
+                        <img src="/logo.png" alt="LinguaFlow Logo" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                     </div>
                     <h1 style={{ fontSize: '2.5rem', fontWeight: 900, marginBottom: '1rem', lineHeight: 1 }}>
                         Break Language <br/>
@@ -171,8 +167,11 @@ const Translator = () => {
 
     return (
         <div className="app-container">
-            <header className="header">
-                <h2 style={{ fontSize: '1.5rem', fontWeight: 800 }}>Translate</h2>
+            <header className="header" style={{ paddingTop: '1.5rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                    <img src="/logo.png" alt="Logo" style={{ width: '32px', height: '32px', borderRadius: '8px' }} />
+                    <h2 style={{ fontSize: '1.25rem', fontWeight: 800 }}>LinguaFlow</h2>
+                </div>
                 <div style={{ display: 'flex', gap: '0.75rem' }}>
                     <button className="btn-icon" onClick={() => setIsDark(!isDark)}>
                         <span className="material-symbols-outlined">{isDark ? 'light_mode' : 'dark_mode'}</span>
