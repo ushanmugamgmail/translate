@@ -13,7 +13,6 @@ const Translator = () => {
     const [predictions, setPredictions] = useState<string[]>([]);
     const [showPredictions, setShowPredictions] = useState(false);
     const [isSettingsOpen, setIsSettingsOpen] = useState(false);
-    const [workMode, setWorkMode] = useState(false);
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -24,7 +23,7 @@ const Translator = () => {
             }
         }, 800);
         return () => clearTimeout(timer);
-    }, [inputText, sourceLang, workMode]);
+    }, [inputText, sourceLang]);
 
     useEffect(() => {
         if (inputText.length > 2) {
@@ -59,19 +58,19 @@ const Translator = () => {
             if (sourceLang === 'English') {
                 const text = inputText.toLowerCase();
                 if (text.includes('hello') || text.includes('hi') || text.includes('hey')) {
-                    result = workMode ? 'வணக்கம், ஐயா' : 'வணக்கம்';
+                    result = 'வணக்கம்';
                 } else if (text.includes('how are you')) {
-                    result = workMode ? 'தாங்கள் எப்படி இருக்கிறீர்கள்?' : 'எப்படி இருக்கிறீர்கள்?';
+                    result = 'தாங்கள் எப்படி இருக்கிறீர்கள்?';
                 } else if (text.includes('thanks') || text.includes('thank you')) {
-                    result = workMode ? 'மிக்க நன்றி' : 'நன்றி';
+                    result = 'மிக்க நன்றி';
                 } else if (text.includes('bye') || text.includes('goodbye')) {
-                    result = workMode ? 'போய் வருகிறேன்' : 'பாய்';
+                    result = 'போய் வருகிறேன்';
                 } else {
                     result = 'மொழிபெயர்ப்பு (Demo)';
                 }
             } else {
-                if (inputText.includes('வணக்கம்')) result = workMode ? 'Greetings/Hello' : 'Hello';
-                else if (inputText.includes('நன்றி')) result = workMode ? 'Thank you very much' : 'Thanks';
+                if (inputText.includes('வணக்கம்')) result = 'Hello';
+                else if (inputText.includes('நன்றி')) result = 'Thank you very much';
                 else result = 'Translated (Demo)';
             }
             setTranslatedText(result);
@@ -177,13 +176,13 @@ const Translator = () => {
                     </div>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                            <span>💼 Work Mode</span>
+                            <span>🌙 Dark Mode</span>
                             <div 
-                                onClick={() => setWorkMode(!workMode)}
+                                onClick={() => setIsDark(!isDark)}
                                 style={{ 
                                     width: '40px', 
                                     height: '20px', 
-                                    background: workMode ? 'var(--primary)' : '#ccc', 
+                                    background: isDark ? 'var(--primary)' : '#ccc', 
                                     borderRadius: '10px',
                                     position: 'relative',
                                     cursor: 'pointer'
@@ -196,13 +195,10 @@ const Translator = () => {
                                     borderRadius: '50%', 
                                     position: 'absolute', 
                                     top: '2px', 
-                                    left: workMode ? '22px' : '2px',
+                                    left: isDark ? '22px' : '2px',
                                     transition: 'left 0.2s'
                                 }} />
                             </div>
-                        </div>
-                        <div style={{ fontSize: '0.8rem', color: 'var(--slate-500)' }}>
-                            Work mode ensures translations are professional and suitable for business environments.
                         </div>
                     </div>
                 </div>
