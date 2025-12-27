@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Welcome - Translate App</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar hiding for cleaner mobile look */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display antialiased text-slate-900 dark:text-white h-screen overflow-hidden flex flex-col items-center justify-center">
+<!-- Mobile Container -->
+<div class="relative w-full max-w-md h-full flex flex-col justify-between bg-background-light dark:bg-background-dark overflow-y-auto no-scrollbar">
+<!-- Background Elements (Floating bubbles effect) -->
+<div class="absolute inset-0 pointer-events-none overflow-hidden opacity-10 dark:opacity-20">
+<div class="absolute top-[10%] left-[10%] text-4xl font-bold text-primary animate-pulse">Hola</div>
+<div class="absolute top-[20%] right-[15%] text-2xl font-bold text-slate-400">Bonjour</div>
+<div class="absolute top-[40%] left-[5%] text-3xl font-bold text-slate-500">こんにちは</div>
+<div class="absolute bottom-[30%] right-[10%] text-5xl font-bold text-primary opacity-50">Hello</div>
+<div class="absolute bottom-[20%] left-[20%] text-2xl font-bold text-slate-400">Hallo</div>
+<!-- Gradient Overlay -->
+<div class="absolute inset-0 bg-gradient-to-b from-transparent via-background-light/50 to-background-light dark:via-background-dark/50 dark:to-background-dark"></div>
+</div>
+<!-- Header / Logo Area -->
+<div class="relative z-10 w-full p-6 pt-12 flex justify-center items-center">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-xl">translate</span>
+</div>
+<span class="font-bold text-lg tracking-tight">LinguaFlow</span>
+</div>
+</div>
+<!-- Main Content Area -->
+<div class="relative z-10 flex-1 flex flex-col justify-center items-center px-6">
+<!-- Hero Graphic -->
+<div class="relative w-full aspect-square max-w-[320px] mb-8">
+<!-- Abstract glowing circle background -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-primary/20 rounded-full blur-3xl"></div>
+<div class="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl bg-slate-800 border border-slate-700/50" data-alt="Group of diverse people talking and laughing together" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBZkNnGtIxsylUAizaQ_VzjUCD9mEKU7zFQkXlK0e4PJ6SIntgj0kg5IydVg3E9YTXlcRFYGAn8q9uQJC7L-AFEnkoF8zO0KJLCkok57gi81_cQgBdajL6p6WoWuYkhl51njnMkOsGc3yM48nF-aO-Vztm5KLiMZcwrb-Qte93EADNusASM_E17lqRwGaIFb7j3Tdp63jilLGvUiaIjGS4afecDE3zEm4rqSgW_ZVzuStgaJnc8a7xulKJSek-p2Jn3uujIlTFpdMQ'); background-size: cover; background-position: center;">
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark/90 via-background-dark/20 to-transparent flex flex-col items-center justify-center p-6 text-center">
+<div class="mt-auto mb-4 w-16 h-16 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center border border-white/20">
+<span class="material-symbols-outlined text-3xl text-white">graphic_eq</span>
+</div>
+</div>
+</div>
+<!-- Floating Feature Badges -->
+<div class="absolute -right-4 top-1/4 bg-white dark:bg-slate-800 p-2 pr-4 rounded-l-xl shadow-lg flex items-center gap-2 border border-slate-100 dark:border-slate-700 animate-bounce" style="animation-duration: 3s;">
+<div class="w-8 h-8 rounded-lg bg-green-500/20 text-green-500 flex items-center justify-center">
+<span class="material-symbols-outlined text-sm">mic</span>
+</div>
+<span class="text-xs font-semibold">Voice Translation</span>
+</div>
+<div class="absolute -left-4 bottom-1/4 bg-white dark:bg-slate-800 p-2 pl-4 rounded-r-xl shadow-lg flex items-center gap-2 border border-slate-100 dark:border-slate-700 animate-bounce" style="animation-duration: 4s;">
+<span class="text-xs font-semibold">Camera Lens</span>
+<div class="w-8 h-8 rounded-lg bg-primary/20 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-sm">photo_camera</span>
+</div>
+</div>
+</div>
+<!-- Typography -->
+<div class="text-center space-y-4 max-w-xs mx-auto">
+<h1 class="text-3xl font-black leading-tight tracking-tight text-slate-900 dark:text-white">
+                    Break Language <br/>
+<span class="text-primary">Barriers</span>
+</h1>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-normal leading-relaxed">
+                    Communicate freely with instant voice, text, and camera translation in over 100+ languages.
+                </p>
+</div>
+</div>
+<!-- Bottom Actions -->
+<div class="relative z-10 w-full p-6 pb-10 flex flex-col gap-3">
+<button class="w-full h-14 bg-primary hover:bg-primary/90 transition-colors rounded-xl flex items-center justify-center gap-2 text-white font-bold text-base shadow-lg shadow-primary/25">
+<span>Start Translating</span>
+<span class="material-symbols-outlined text-lg">arrow_forward</span>
+</button>
+<button class="w-full h-14 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 transition-colors rounded-xl flex items-center justify-center gap-2 text-slate-900 dark:text-white font-semibold text-base">
+<span class="material-symbols-outlined text-lg text-primary">play_circle</span>
+<span>View Tutorial</span>
+</button>
+<div class="pt-4 text-center">
+<p class="text-slate-400 dark:text-slate-500 text-xs">
+                    By continuing, you agree to our <a class="underline hover:text-primary transition-colors" href="#">Privacy Policy</a> &amp; <a class="underline hover:text-primary transition-colors" href="#">Terms</a>
+</p>
+</div>
+</div>
+</div>
+</body></html>

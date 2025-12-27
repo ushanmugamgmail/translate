@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Main Translation Screen</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar hiding for cleaner mobile look */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white antialiased transition-colors duration-200">
+<div class="relative flex h-full min-h-screen w-full flex-col overflow-hidden mx-auto max-w-[480px] shadow-2xl">
+<!-- Top App Bar -->
+<header class="flex items-center justify-between p-5 pt-8 z-10">
+<h2 class="text-xl font-bold leading-tight tracking-tight">Translate</h2>
+<div class="flex items-center gap-3">
+<button class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors text-slate-600 dark:text-slate-300">
+<span class="material-symbols-outlined" style="font-size: 24px;">history</span>
+</button>
+<button class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-black/5 dark:hover:bg-white/5 transition-colors overflow-hidden">
+<!-- Profile Avatar Placeholder -->
+<div class="w-8 h-8 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center text-white text-xs font-bold" data-alt="User profile avatar gradient">
+                        JD
+                   </div>
+</button>
+</div>
+</header>
+<!-- Language Selector Bar -->
+<div class="px-4 pb-2 z-10">
+<div class="flex items-center justify-between gap-2 bg-white dark:bg-[#1e1e24] p-1.5 rounded-full shadow-sm border border-slate-100 dark:border-slate-800">
+<!-- Source Language -->
+<button class="flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-full bg-slate-100 dark:bg-[#2c2c35] text-primary font-semibold text-sm transition-all hover:opacity-90">
+<span>English</span>
+<span class="material-symbols-outlined" style="font-size: 18px;">expand_more</span>
+</button>
+<!-- Swap Button -->
+<button class="flex items-center justify-center w-10 h-10 rounded-full text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined" style="font-size: 20px;">sync_alt</span>
+</button>
+<!-- Target Language -->
+<button class="flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-full hover:bg-slate-50 dark:hover:bg-white/5 text-slate-600 dark:text-slate-200 font-semibold text-sm transition-all">
+<span>Spanish</span>
+<span class="material-symbols-outlined" style="font-size: 18px;">expand_more</span>
+</button>
+</div>
+</div>
+<!-- Scrollable Content Area -->
+<div class="flex-1 overflow-y-auto no-scrollbar p-4 flex flex-col gap-4 pb-32">
+<!-- Input Card (Source) -->
+<div class="group relative flex flex-col bg-white dark:bg-[#1e1e24] rounded-2xl p-5 shadow-sm min-h-[180px] border border-transparent focus-within:border-primary/50 transition-colors">
+<div class="flex justify-between items-start mb-2">
+<span class="text-xs font-bold text-slate-400 uppercase tracking-wider">English</span>
+<button class="text-slate-300 hover:text-slate-500 dark:hover:text-slate-200 transition-colors">
+<span class="material-symbols-outlined" style="font-size: 20px;">close</span>
+</button>
+</div>
+<textarea class="w-full flex-1 bg-transparent border-none p-0 text-2xl leading-normal text-slate-800 dark:text-white placeholder:text-slate-300 dark:placeholder:text-slate-600 focus:ring-0 resize-none font-normal" placeholder="Enter text" spellcheck="false">Hello, how are you today?</textarea>
+<div class="flex items-center justify-between mt-4">
+<button class="p-2 -ml-2 rounded-full text-slate-400 hover:bg-slate-50 dark:hover:bg-white/5 hover:text-primary transition-all">
+<span class="material-symbols-outlined" style="font-size: 24px;">volume_up</span>
+</button>
+<span class="text-xs text-slate-300 font-medium">25/5000</span>
+</div>
+</div>
+<!-- Output Card (Target) -->
+<div class="relative flex flex-col bg-primary/5 dark:bg-[#232f48] rounded-2xl p-5 shadow-sm min-h-[180px] border border-primary/10 dark:border-transparent">
+<div class="flex justify-between items-start mb-2">
+<span class="text-xs font-bold text-primary dark:text-blue-300 uppercase tracking-wider">Spanish</span>
+</div>
+<div class="w-full flex-1 text-2xl leading-normal text-primary dark:text-blue-50 font-medium break-words">
+                    Hola, ¿cómo estás hoy?
+                </div>
+<div class="flex items-center gap-1 mt-6 border-t border-primary/10 dark:border-white/5 pt-3">
+<button class="flex flex-col items-center justify-center w-10 h-10 rounded-full text-primary/70 dark:text-blue-300 hover:bg-primary/10 dark:hover:bg-white/10 transition-all" title="Listen">
+<span class="material-symbols-outlined" style="font-size: 22px;">volume_up</span>
+</button>
+<button class="flex flex-col items-center justify-center w-10 h-10 rounded-full text-primary/70 dark:text-blue-300 hover:bg-primary/10 dark:hover:bg-white/10 transition-all" title="Copy">
+<span class="material-symbols-outlined" style="font-size: 22px;">content_copy</span>
+</button>
+<button class="flex flex-col items-center justify-center w-10 h-10 rounded-full text-primary/70 dark:text-blue-300 hover:bg-primary/10 dark:hover:bg-white/10 transition-all" title="Save">
+<span class="material-symbols-outlined" style="font-size: 22px;">star</span>
+</button>
+<div class="flex-1"></div>
+<button class="flex flex-col items-center justify-center w-10 h-10 rounded-full text-primary/70 dark:text-blue-300 hover:bg-primary/10 dark:hover:bg-white/10 transition-all" title="Fullscreen">
+<span class="material-symbols-outlined" style="font-size: 22px;">fullscreen</span>
+</button>
+</div>
+</div>
+<!-- Suggestion Chips (Optional context) -->
+<div class="flex gap-2 overflow-x-auto no-scrollbar pb-2">
+<button class="whitespace-nowrap px-4 py-2 bg-white dark:bg-[#1e1e24] border border-slate-100 dark:border-slate-700 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-300 shadow-sm active:scale-95 transition-transform">
+                    Translate from clipboard
+                </button>
+<button class="whitespace-nowrap px-4 py-2 bg-white dark:bg-[#1e1e24] border border-slate-100 dark:border-slate-700 rounded-lg text-sm font-medium text-slate-600 dark:text-slate-300 shadow-sm active:scale-95 transition-transform">
+                    Phrasebook
+                </button>
+</div>
+</div>
+<!-- Bottom Action Toolbar -->
+<!-- Using a gradient fade for smooth integration with content -->
+<div class="absolute bottom-0 left-0 right-0 z-20">
+<!-- Gradient Overlay -->
+<div class="h-24 bg-gradient-to-t from-background-light via-background-light to-transparent dark:from-background-dark dark:via-background-dark pointer-events-none"></div>
+<!-- Toolbar Content -->
+<div class="bg-background-light dark:bg-background-dark px-6 pb-8 pt-2">
+<div class="flex items-end justify-between max-w-[400px] mx-auto">
+<!-- Camera Button -->
+<button class="flex flex-col items-center gap-2 group">
+<div class="w-14 h-14 rounded-2xl bg-white dark:bg-[#1e1e24] border border-slate-100 dark:border-slate-800 flex items-center justify-center shadow-sm group-hover:bg-slate-50 dark:group-hover:bg-[#25252d] transition-all active:scale-95">
+<span class="material-symbols-outlined text-primary" style="font-size: 26px;">photo_camera</span>
+</div>
+<span class="text-[11px] font-semibold text-slate-500 dark:text-slate-400">Camera</span>
+</button>
+<!-- Microphone Button (Main Action) -->
+<button class="flex flex-col items-center gap-2 -mb-4 z-30 group">
+<div class="relative w-20 h-20 flex items-center justify-center">
+<!-- Pulse Animation Rings -->
+<div class="absolute inset-0 bg-primary/20 rounded-full animate-ping opacity-75"></div>
+<div class="absolute inset-0 bg-primary rounded-full shadow-lg shadow-primary/40 group-active:scale-95 transition-transform duration-150 flex items-center justify-center">
+<span class="material-symbols-outlined text-white" style="font-size: 36px;">mic</span>
+</div>
+</div>
+<span class="text-xs font-bold text-slate-600 dark:text-slate-300 mt-2 bg-background-light dark:bg-background-dark px-2 rounded-full py-0.5">Tap to Speak</span>
+</button>
+<!-- Conversation/Keyboard Button -->
+<button class="flex flex-col items-center gap-2 group">
+<div class="w-14 h-14 rounded-2xl bg-white dark:bg-[#1e1e24] border border-slate-100 dark:border-slate-800 flex items-center justify-center shadow-sm group-hover:bg-slate-50 dark:group-hover:bg-[#25252d] transition-all active:scale-95">
+<span class="material-symbols-outlined text-primary" style="font-size: 26px;">forum</span>
+</div>
+<span class="text-[11px] font-semibold text-slate-500 dark:text-slate-400">Convo</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</body></html>

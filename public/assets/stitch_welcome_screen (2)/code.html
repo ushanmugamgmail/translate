@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Language Selection Screen</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1a2230",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for the language list to mimic iOS feel */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        /* Alphabet index scroll styling */
+        .alphabet-scroller {
+            font-size: 10px;
+            line-height: 14px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display antialiased overflow-hidden">
+<div class="relative flex h-screen w-full flex-col max-w-md mx-auto shadow-2xl overflow-hidden">
+<!-- Header Section -->
+<header class="flex-none bg-background-light dark:bg-background-dark z-20 pb-2">
+<!-- Top Bar -->
+<div class="flex items-center justify-between p-4 pb-2">
+<button class="flex size-10 items-center justify-center rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors text-slate-900 dark:text-white">
+<span class="material-symbols-outlined text-2xl">arrow_back</span>
+</button>
+<h2 class="text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center pr-10">Select Language</h2>
+</div>
+<!-- Segmented Control -->
+<div class="px-4 py-2">
+<div class="flex h-10 w-full items-center justify-center rounded-lg bg-slate-200 dark:bg-[#232f48] p-1">
+<label class="flex cursor-pointer h-full flex-1 items-center justify-center overflow-hidden rounded-[0.35rem] px-2 has-[:checked]:bg-white dark:has-[:checked]:bg-[#111722] has-[:checked]:shadow-sm transition-all duration-200 text-slate-500 dark:text-[#92a4c9] has-[:checked]:text-primary dark:has-[:checked]:text-white text-sm font-medium leading-normal">
+<span class="truncate">Translate From</span>
+<input class="hidden" name="direction" type="radio" value="from"/>
+</label>
+<label class="flex cursor-pointer h-full flex-1 items-center justify-center overflow-hidden rounded-[0.35rem] px-2 has-[:checked]:bg-white dark:has-[:checked]:bg-[#111722] has-[:checked]:shadow-sm transition-all duration-200 text-slate-500 dark:text-[#92a4c9] has-[:checked]:text-primary dark:has-[:checked]:text-white text-sm font-medium leading-normal">
+<span class="truncate">Translate To</span>
+<input checked="" class="hidden" name="direction" type="radio" value="to"/>
+</label>
+</div>
+</div>
+<!-- Search Bar -->
+<div class="px-4 py-2">
+<div class="flex w-full items-center rounded-lg bg-slate-200 dark:bg-[#232f48] h-10 px-3 transition-colors focus-within:ring-2 focus-within:ring-primary/50">
+<span class="material-symbols-outlined text-slate-400 dark:text-[#92a4c9]">search</span>
+<input class="flex-1 bg-transparent border-none focus:ring-0 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-[#92a4c9] text-base font-normal h-full px-2" placeholder="Search languages"/>
+<button class="text-slate-400 hover:text-primary dark:text-[#92a4c9] dark:hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[20px]">mic</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Scrollable Content Area -->
+<main class="flex-1 overflow-y-auto relative no-scrollbar pb-10">
+<!-- Recent Languages Section -->
+<div class="px-4 pt-4 pb-2">
+<h3 class="text-slate-500 dark:text-slate-400 text-xs font-bold uppercase tracking-wider mb-3">Recent</h3>
+<div class="flex flex-wrap gap-2">
+<button class="group flex h-9 items-center gap-x-2 rounded-lg bg-primary text-white pl-3 pr-4 shadow-md shadow-primary/20 transition-transform active:scale-95">
+<span class="text-sm font-medium">English (US)</span>
+<span class="material-symbols-outlined text-[18px]">check</span>
+</button>
+<button class="group flex h-9 items-center gap-x-2 rounded-lg bg-white dark:bg-[#232f48] border border-slate-200 dark:border-transparent hover:border-primary dark:hover:border-primary/50 text-slate-700 dark:text-slate-200 pl-3 pr-4 transition-all active:scale-95">
+<span class="text-sm font-medium">Spanish</span>
+</button>
+<button class="group flex h-9 items-center gap-x-2 rounded-lg bg-white dark:bg-[#232f48] border border-slate-200 dark:border-transparent hover:border-primary dark:hover:border-primary/50 text-slate-700 dark:text-slate-200 pl-3 pr-4 transition-all active:scale-95">
+<span class="text-sm font-medium">Japanese</span>
+</button>
+<button class="group flex h-9 items-center gap-x-2 rounded-lg bg-white dark:bg-[#232f48] border border-slate-200 dark:border-transparent hover:border-primary dark:hover:border-primary/50 text-slate-700 dark:text-slate-200 pl-3 pr-4 transition-all active:scale-95">
+<span class="text-sm font-medium">Mandarin</span>
+</button>
+</div>
+</div>
+<!-- All Languages List -->
+<div class="mt-4">
+<h3 class="px-4 text-slate-500 dark:text-slate-400 text-xs font-bold uppercase tracking-wider mb-2 sticky top-0 bg-background-light dark:bg-background-dark py-2 z-10">All Languages</h3>
+<div class="flex flex-col">
+<!-- Letter A Group -->
+<div class="flex px-4 py-3 items-center justify-between hover:bg-black/5 dark:hover:bg-white/5 active:bg-black/10 dark:active:bg-white/10 cursor-pointer border-b border-slate-200 dark:border-[#232f48]/50 last:border-0">
+<div class="flex flex-col">
+<span class="text-base font-medium text-slate-900 dark:text-white">Afrikaans</span>
+<span class="text-xs text-slate-500 dark:text-slate-400">Afrikaans</span>
+</div>
+<span class="material-symbols-outlined text-slate-400 text-[20px]">download</span>
+</div>
+<div class="flex px-4 py-3 items-center justify-between hover:bg-black/5 dark:hover:bg-white/5 active:bg-black/10 dark:active:bg-white/10 cursor-pointer border-b border-slate-200 dark:border-[#232f48]/50 last:border-0">
+<div class="flex flex-col">
+<span class="text-base font-medium text-slate-900 dark:text-white">Arabic</span>
+<span class="text-xs text-slate-500 dark:text-slate-400">العربية</span>
+</div>
+<!-- Downloaded state -->
+<span class="material-symbols-outlined text-primary text-[20px]">download_done</span>
+</div>
+<!-- Letter B Group -->
+<div class="flex px-4 py-3 items-center justify-between hover:bg-black/5 dark:hover:bg-white/5 active:bg-black/10 dark:active:bg-white/10 cursor-pointer border-b border-slate-200 dark:border-[#232f48]/50 last:border-0">
+<div class="flex flex-col">
+<span class="text-base font-medium text-slate-900 dark:text-white">Bengali</span>
+<span class="text-xs text-slate-500 dark:text-slate-400">বাংলা</span>
+</div>
+<span class="material-symbols-outlined text-slate-400 text-[20px]">download</span>
+</div>
+<div class="flex px-4 py-3 items-center justify-between hover:bg-black/5 dark:hover:bg-white/5 active:bg-black/10 dark:active:bg-white/10 cursor-pointer border-b border-slate-200 dark:border-[#232f48]/50 last:border-0">
+<div class="flex flex-col">
+<span class="text-base font-medium text-slate-900 dark:text-white">Bulgarian</span>
+<span class="text-xs text-slate-500 dark:text-slate-400">Български</span>
+</div>
+<span class="material-symbols-outlined text-slate-400 text-[20px]">download</span>
+</div>
+<!-- Letter C Group -->
+<div class="flex px-4 py-3 items-center justify-between hover:bg-black/5 dark:hover:bg-white/5 active:bg-black/10 dark:active:bg-white/10 cursor-pointer border-b border-slate-200 dark:border-[#232f48]/50 last:border-0">
+<div class="flex flex-col">
+<span class="text-base font-medium text-slate-900 dark:text-white">Catalan</span>
+<span class="text-xs text-slate-500 dark:text-slate-400">Català</span>
+</div>
+<span class="material-symbols-outlined text-slate-400 text-[20px]">download</span>
+</div>
+<div class="flex px-4 py-3 items-center justify-between hover:bg-black/5 dark:hover:bg-white/5 active:bg-black/10 dark:active:bg-white/10 cursor-pointer border-b border-slate-200 dark:border-[#232f48]/50 last:border-0">
+<div class="flex flex-col">
+<span class="text-base font-medium text-slate-900 dark:text-white">Chinese (Simplified)</span>
+<span class="text-xs text-slate-500 dark:text-slate-400">简体中文</span>
+</div>
+<span class="material-symbols-outlined text-slate-400 text-[20px]">download</span>
+</div>
+<div class="flex px-4 py-3 items-center justify-between hover:bg-black/5 dark:hover:bg-white/5 active:bg-black/10 dark:active:bg-white/10 cursor-pointer border-b border-slate-200 dark:border-[#232f48]/50 last:border-0">
+<div class="flex flex-col">
+<span class="text-base font-medium text-slate-900 dark:text-white">Chinese (Traditional)</span>
+<span class="text-xs text-slate-500 dark:text-slate-400">繁體中文</span>
+</div>
+<span class="material-symbols-outlined text-slate-400 text-[20px]">download</span>
+</div>
+<!-- Letter D Group -->
+<div class="flex px-4 py-3 items-center justify-between hover:bg-black/5 dark:hover:bg-white/5 active:bg-black/10 dark:active:bg-white/10 cursor-pointer border-b border-slate-200 dark:border-[#232f48]/50 last:border-0">
+<div class="flex flex-col">
+<span class="text-base font-medium text-slate-900 dark:text-white">Danish</span>
+<span class="text-xs text-slate-500 dark:text-slate-400">Dansk</span>
+</div>
+<span class="material-symbols-outlined text-slate-400 text-[20px]">download</span>
+</div>
+<div class="flex px-4 py-3 items-center justify-between hover:bg-black/5 dark:hover:bg-white/5 active:bg-black/10 dark:active:bg-white/10 cursor-pointer border-b border-slate-200 dark:border-[#232f48]/50 last:border-0">
+<div class="flex flex-col">
+<span class="text-base font-medium text-slate-900 dark:text-white">Dutch</span>
+<span class="text-xs text-slate-500 dark:text-slate-400">Nederlands</span>
+</div>
+<span class="material-symbols-outlined text-slate-400 text-[20px]">download</span>
+</div>
+<!-- Letter E Group (Selected Example) -->
+<div class="flex px-4 py-3 items-center justify-between bg-primary/10 dark:bg-primary/20 border-l-4 border-primary cursor-pointer border-b border-slate-200 dark:border-[#232f48]/50 last:border-0">
+<div class="flex flex-col">
+<span class="text-base font-bold text-primary dark:text-white">English (US)</span>
+<span class="text-xs text-primary/70 dark:text-slate-300">English</span>
+</div>
+<span class="material-symbols-outlined text-primary dark:text-white text-[24px]">check</span>
+</div>
+<div class="flex px-4 py-3 items-center justify-between hover:bg-black/5 dark:hover:bg-white/5 active:bg-black/10 dark:active:bg-white/10 cursor-pointer border-b border-slate-200 dark:border-[#232f48]/50 last:border-0">
+<div class="flex flex-col">
+<span class="text-base font-medium text-slate-900 dark:text-white">English (UK)</span>
+<span class="text-xs text-slate-500 dark:text-slate-400">English</span>
+</div>
+<span class="material-symbols-outlined text-slate-400 text-[20px]">download</span>
+</div>
+<!-- Additional items to enable scrolling -->
+<div class="flex px-4 py-3 items-center justify-between hover:bg-black/5 dark:hover:bg-white/5 active:bg-black/10 dark:active:bg-white/10 cursor-pointer border-b border-slate-200 dark:border-[#232f48]/50 last:border-0">
+<div class="flex flex-col">
+<span class="text-base font-medium text-slate-900 dark:text-white">Estonian</span>
+<span class="text-xs text-slate-500 dark:text-slate-400">Eesti</span>
+</div>
+<span class="material-symbols-outlined text-slate-400 text-[20px]">download</span>
+</div>
+<div class="flex px-4 py-3 items-center justify-between hover:bg-black/5 dark:hover:bg-white/5 active:bg-black/10 dark:active:bg-white/10 cursor-pointer border-b border-slate-200 dark:border-[#232f48]/50 last:border-0">
+<div class="flex flex-col">
+<span class="text-base font-medium text-slate-900 dark:text-white">Finnish</span>
+<span class="text-xs text-slate-500 dark:text-slate-400">Suomi</span>
+</div>
+<span class="material-symbols-outlined text-slate-400 text-[20px]">download</span>
+</div>
+<div class="flex px-4 py-3 items-center justify-between hover:bg-black/5 dark:hover:bg-white/5 active:bg-black/10 dark:active:bg-white/10 cursor-pointer border-b border-slate-200 dark:border-[#232f48]/50 last:border-0">
+<div class="flex flex-col">
+<span class="text-base font-medium text-slate-900 dark:text-white">French</span>
+<span class="text-xs text-slate-500 dark:text-slate-400">Français</span>
+</div>
+<span class="material-symbols-outlined text-primary text-[20px]">download_done</span>
+</div>
+<div class="flex px-4 py-3 items-center justify-between hover:bg-black/5 dark:hover:bg-white/5 active:bg-black/10 dark:active:bg-white/10 cursor-pointer border-b border-slate-200 dark:border-[#232f48]/50 last:border-0">
+<div class="flex flex-col">
+<span class="text-base font-medium text-slate-900 dark:text-white">German</span>
+<span class="text-xs text-slate-500 dark:text-slate-400">Deutsch</span>
+</div>
+<span class="material-symbols-outlined text-primary text-[20px]">download_done</span>
+</div>
+<div class="flex px-4 py-3 items-center justify-between hover:bg-black/5 dark:hover:bg-white/5 active:bg-black/10 dark:active:bg-white/10 cursor-pointer border-b border-slate-200 dark:border-[#232f48]/50 last:border-0">
+<div class="flex flex-col">
+<span class="text-base font-medium text-slate-900 dark:text-white">Greek</span>
+<span class="text-xs text-slate-500 dark:text-slate-400">Ελληνικά</span>
+</div>
+<span class="material-symbols-outlined text-slate-400 text-[20px]">download</span>
+</div>
+</div>
+</div>
+<!-- Alphabet Scroller (Right Side) -->
+<div class="fixed right-1 top-1/2 -translate-y-1/2 z-30 flex flex-col items-center gap-[2px] text-primary dark:text-primary alphabet-scroller bg-slate-200/50 dark:bg-black/20 backdrop-blur-sm rounded-full py-1 px-1 select-none cursor-pointer">
+<span>#</span>
+<span>A</span>
+<span>B</span>
+<span>C</span>
+<span>D</span>
+<span class="font-bold text-slate-900 dark:text-white">E</span>
+<span>F</span>
+<span>G</span>
+<span>H</span>
+<span>I</span>
+<span>J</span>
+<span>K</span>
+<span>L</span>
+<span>M</span>
+<span>N</span>
+<span>O</span>
+<span>P</span>
+<span>Q</span>
+<span>R</span>
+<span>S</span>
+<span>T</span>
+<span>U</span>
+<span>V</span>
+<span>W</span>
+<span>X</span>
+<span>Y</span>
+<span>Z</span>
+</div>
+</main>
+<!-- Bottom overlay gradient for smoother scrolling effect -->
+<div class="absolute bottom-0 left-0 w-full h-8 bg-gradient-to-t from-background-light dark:from-background-dark to-transparent pointer-events-none z-10"></div>
+</div>
+</body></html>

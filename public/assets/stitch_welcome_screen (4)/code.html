@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Settings Screen</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                        "card-dark": "#1c2536", // Slightly lighter for cards
+                        "card-light": "#ffffff",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom scrollbar hide for cleaner UI */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen text-slate-900 dark:text-white font-display overflow-x-hidden">
+<!-- Main Container -->
+<div class="relative flex flex-col w-full max-w-md mx-auto min-h-screen pb-10">
+<!-- Navigation Bar -->
+<div class="sticky top-0 z-50 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-md px-4 py-3 flex items-center justify-between border-b border-slate-200 dark:border-slate-800/50">
+<div class="flex items-center gap-2 text-slate-900 dark:text-white cursor-pointer hover:opacity-70 transition-opacity">
+<span class="material-symbols-outlined text-[24px]">arrow_back_ios_new</span>
+<span class="text-base font-medium hidden sm:block">Back</span>
+</div>
+<h1 class="text-lg font-bold leading-tight absolute left-1/2 -translate-x-1/2">Settings</h1>
+<button class="text-primary font-bold text-base hover:opacity-80 transition-opacity">Done</button>
+</div>
+<!-- Scrollable Content -->
+<div class="flex-1 flex flex-col gap-6 p-4">
+<!-- Profile Section -->
+<div class="flex flex-col gap-4">
+<div class="bg-card-light dark:bg-card-dark rounded-2xl p-4 shadow-sm border border-slate-100 dark:border-slate-800">
+<div class="flex items-center gap-4">
+<div class="relative shrink-0">
+<div class="h-16 w-16 rounded-full bg-center bg-cover border-2 border-slate-100 dark:border-slate-700" data-alt="Profile portrait of Alex Johnson" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAX2RxUUIpzEFSKB7PgdBmb4RdKk89vIeEi69KrQWVN4rvgwtuw5_MwoRKZ5JIfyGyn387ZxmpwMvM1OoH6EWICkgFRmWsQYaQCE0BdVgWn5pyPIydENJP55ewmEv_kAd-_NGRqvwKwwAOEH4ldiqqaN_38KTC9enMy32ASisZcTyyP6Tu7EwMRoMGHN8QsHt8gSq7sSMMKK9gTqcpIUFYfVFTNqtuKV5NCCNjMRZJXONXbnbX0ycaSadiNqxg4SjpWf6jKos31LDE");'></div>
+<div class="absolute -bottom-1 -right-1 bg-green-500 h-4 w-4 rounded-full border-2 border-white dark:border-card-dark"></div>
+</div>
+<div class="flex flex-col flex-1 min-w-0">
+<h2 class="text-lg font-bold truncate text-slate-900 dark:text-white">Alex Johnson</h2>
+<p class="text-slate-500 dark:text-slate-400 text-sm">Free Member</p>
+</div>
+</div>
+<div class="mt-4 pt-4 border-t border-slate-100 dark:border-slate-700/50">
+<button class="flex w-full items-center justify-between rounded-xl bg-gradient-to-r from-primary to-blue-500 p-3 text-white shadow-lg shadow-primary/25 hover:shadow-primary/40 transition-all active:scale-[0.98]">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px]">diamond</span>
+<span class="font-bold text-sm">Upgrade to Pro</span>
+</div>
+<span class="material-symbols-outlined text-[18px]">arrow_forward_ios</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Group: Audio & Speech -->
+<div class="flex flex-col gap-2">
+<h3 class="px-2 text-sm font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Audio &amp; Speech</h3>
+<div class="bg-card-light dark:bg-card-dark rounded-2xl overflow-hidden shadow-sm border border-slate-100 dark:border-slate-800">
+<!-- Item 1: Auto-play -->
+<div class="flex items-center justify-between p-4 bg-card-light dark:bg-card-dark border-b border-slate-100 dark:border-slate-700/50 last:border-0 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<div class="flex items-center gap-3 overflow-hidden">
+<div class="flex items-center justify-center rounded-lg bg-blue-100 dark:bg-[#232f48] text-primary dark:text-blue-400 shrink-0 size-9">
+<span class="material-symbols-outlined text-[20px]">volume_up</span>
+</div>
+<span class="text-base font-medium truncate">Auto-play voice</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
+</label>
+</div>
+<!-- Item 2: Voice Speed -->
+<button class="w-full flex items-center justify-between p-4 bg-card-light dark:bg-card-dark border-b border-slate-100 dark:border-slate-700/50 last:border-0 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group">
+<div class="flex items-center gap-3 overflow-hidden">
+<div class="flex items-center justify-center rounded-lg bg-blue-100 dark:bg-[#232f48] text-primary dark:text-blue-400 shrink-0 size-9">
+<span class="material-symbols-outlined text-[20px]">speed</span>
+</div>
+<span class="text-base font-medium truncate">Voice Speed</span>
+</div>
+<div class="flex items-center gap-2 text-slate-400 dark:text-slate-500">
+<span class="text-sm font-medium text-slate-500 dark:text-slate-300">Normal</span>
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</div>
+</button>
+<!-- Item 3: Offline Languages -->
+<button class="w-full flex items-center justify-between p-4 bg-card-light dark:bg-card-dark last:border-0 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group">
+<div class="flex items-center gap-3 overflow-hidden">
+<div class="flex items-center justify-center rounded-lg bg-blue-100 dark:bg-[#232f48] text-primary dark:text-blue-400 shrink-0 size-9">
+<span class="material-symbols-outlined text-[20px]">download_for_offline</span>
+</div>
+<span class="text-base font-medium truncate">Offline Languages</span>
+</div>
+<div class="flex items-center gap-2 text-slate-400 dark:text-slate-500">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</div>
+</button>
+</div>
+</div>
+<!-- Group: Data & History -->
+<div class="flex flex-col gap-2">
+<h3 class="px-2 text-sm font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">History &amp; Data</h3>
+<div class="bg-card-light dark:bg-card-dark rounded-2xl overflow-hidden shadow-sm border border-slate-100 dark:border-slate-800">
+<!-- Item 1: Save History -->
+<div class="flex items-center justify-between p-4 bg-card-light dark:bg-card-dark border-b border-slate-100 dark:border-slate-700/50 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<div class="flex items-center gap-3 overflow-hidden">
+<div class="flex items-center justify-center rounded-lg bg-purple-100 dark:bg-[#232f48] text-purple-600 dark:text-purple-400 shrink-0 size-9">
+<span class="material-symbols-outlined text-[20px]">history</span>
+</div>
+<span class="text-base font-medium truncate">Save History</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
+</label>
+</div>
+<!-- Item 2: Clear History -->
+<button class="w-full flex items-center justify-between p-4 bg-card-light dark:bg-card-dark hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group">
+<div class="flex items-center gap-3 overflow-hidden">
+<div class="flex items-center justify-center rounded-lg bg-red-100 dark:bg-red-900/20 text-red-600 dark:text-red-400 shrink-0 size-9">
+<span class="material-symbols-outlined text-[20px]">delete_sweep</span>
+</div>
+<span class="text-base font-medium truncate text-red-600 dark:text-red-400">Clear All History</span>
+</div>
+</button>
+</div>
+</div>
+<!-- Group: General -->
+<div class="flex flex-col gap-2">
+<h3 class="px-2 text-sm font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">General</h3>
+<div class="bg-card-light dark:bg-card-dark rounded-2xl overflow-hidden shadow-sm border border-slate-100 dark:border-slate-800">
+<!-- Item 1: Appearance -->
+<button class="w-full flex items-center justify-between p-4 bg-card-light dark:bg-card-dark border-b border-slate-100 dark:border-slate-700/50 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<div class="flex items-center gap-3 overflow-hidden">
+<div class="flex items-center justify-center rounded-lg bg-slate-100 dark:bg-[#232f48] text-slate-600 dark:text-slate-300 shrink-0 size-9">
+<span class="material-symbols-outlined text-[20px]">dark_mode</span>
+</div>
+<span class="text-base font-medium truncate">Appearance</span>
+</div>
+<div class="flex items-center gap-2 text-slate-400 dark:text-slate-500">
+<span class="text-sm font-medium text-slate-500 dark:text-slate-300">Dark</span>
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</div>
+</button>
+<!-- Item 2: Notifications -->
+<button class="w-full flex items-center justify-between p-4 bg-card-light dark:bg-card-dark hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<div class="flex items-center gap-3 overflow-hidden">
+<div class="flex items-center justify-center rounded-lg bg-amber-100 dark:bg-[#232f48] text-amber-600 dark:text-amber-400 shrink-0 size-9">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+</div>
+<span class="text-base font-medium truncate">Notifications</span>
+</div>
+<div class="flex items-center gap-2 text-slate-400 dark:text-slate-500">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</div>
+</button>
+</div>
+</div>
+<!-- Group: Support -->
+<div class="flex flex-col gap-2">
+<h3 class="px-2 text-sm font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Support</h3>
+<div class="bg-card-light dark:bg-card-dark rounded-2xl overflow-hidden shadow-sm border border-slate-100 dark:border-slate-800">
+<!-- Item 1: Help -->
+<button class="w-full flex items-center justify-between p-4 bg-card-light dark:bg-card-dark border-b border-slate-100 dark:border-slate-700/50 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<div class="flex items-center gap-3 overflow-hidden">
+<div class="flex items-center justify-center rounded-lg bg-teal-100 dark:bg-[#232f48] text-teal-600 dark:text-teal-400 shrink-0 size-9">
+<span class="material-symbols-outlined text-[20px]">help</span>
+</div>
+<span class="text-base font-medium truncate">Help Center</span>
+</div>
+<div class="flex items-center gap-2 text-slate-400 dark:text-slate-500">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</div>
+</button>
+<!-- Item 2: Feedback -->
+<button class="w-full flex items-center justify-between p-4 bg-card-light dark:bg-card-dark hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<div class="flex items-center gap-3 overflow-hidden">
+<div class="flex items-center justify-center rounded-lg bg-teal-100 dark:bg-[#232f48] text-teal-600 dark:text-teal-400 shrink-0 size-9">
+<span class="material-symbols-outlined text-[20px]">chat</span>
+</div>
+<span class="text-base font-medium truncate">Send Feedback</span>
+</div>
+<div class="flex items-center gap-2 text-slate-400 dark:text-slate-500">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</div>
+</button>
+</div>
+</div>
+<!-- Logout & Version -->
+<div class="mt-4 flex flex-col items-center gap-6">
+<button class="w-full bg-card-light dark:bg-card-dark border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 text-red-600 dark:text-red-400 font-bold py-3.5 px-4 rounded-xl transition-colors shadow-sm">
+                    Log Out
+                </button>
+<div class="text-center pb-8">
+<p class="text-slate-400 dark:text-slate-600 text-xs font-medium">Version 2.4.0 (Build 12)</p>
+</div>
+</div>
+</div>
+</div>
+</body></html>
