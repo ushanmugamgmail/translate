@@ -57,11 +57,21 @@ const Translator = () => {
         setTimeout(() => {
             let result = '';
             if (sourceLang === 'English') {
-                if (inputText.toLowerCase().includes('hello')) result = workMode ? 'வணக்கம், ஐயா' : 'வணக்கம்';
-                else if (inputText.toLowerCase().includes('how are you')) result = workMode ? 'தாங்கள் எப்படி இருக்கிறீர்கள்?' : 'எப்படி இருக்கிறீர்கள்?';
-                else result = 'மொழிபெயர்ப்பு (Demo)';
+                const text = inputText.toLowerCase();
+                if (text.includes('hello') || text.includes('hi') || text.includes('hey')) {
+                    result = workMode ? 'வணக்கம், ஐயா' : 'வணக்கம்';
+                } else if (text.includes('how are you')) {
+                    result = workMode ? 'தாங்கள் எப்படி இருக்கிறீர்கள்?' : 'எப்படி இருக்கிறீர்கள்?';
+                } else if (text.includes('thanks') || text.includes('thank you')) {
+                    result = workMode ? 'மிக்க நன்றி' : 'நன்றி';
+                } else if (text.includes('bye') || text.includes('goodbye')) {
+                    result = workMode ? 'போய் வருகிறேன்' : 'பாய்';
+                } else {
+                    result = 'மொழிபெயர்ப்பு (Demo)';
+                }
             } else {
                 if (inputText.includes('வணக்கம்')) result = workMode ? 'Greetings/Hello' : 'Hello';
+                else if (inputText.includes('நன்றி')) result = workMode ? 'Thank you very much' : 'Thanks';
                 else result = 'Translated (Demo)';
             }
             setTranslatedText(result);
